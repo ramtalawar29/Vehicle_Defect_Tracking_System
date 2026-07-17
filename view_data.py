@@ -1,0 +1,39 @@
+from openpyxl import load_workbook
+import os
+
+FILE_NAME = "vehicle_data.xlsx"
+
+def view_data():
+
+    if not os.path.exists(FILE_NAME):
+        print("\nNo Database Found!")
+        return
+
+    wb = load_workbook(FILE_NAME)
+    ws = wb.active
+
+    date = input("\nEnter Date (DD-MM-YYYY): ")
+
+    found = False
+
+    print("\n========== RECORDS ==========\n")
+
+    for row in ws.iter_rows(min_row=2, values_only=True):
+
+        if row[0].startswith(date):
+
+            print("Date & Time :", row[0])
+            print("VIN Number  :", row[1])
+            print("Model       :", row[2])
+            print("Fuel Type   :", row[3])
+            print("Issues      :", row[4])
+            print("-" * 40)
+
+            found = True
+
+    if not found:
+        print("No Record Found!")
+
+    wb.close()
+
+    input("\nPress Enter to return to Main Menu...")
