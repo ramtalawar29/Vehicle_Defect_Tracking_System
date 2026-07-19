@@ -7,10 +7,10 @@ def main():
 
     while True:
 
-        choice = main_menu()
+        choice,username = main_menu()
 
         if choice == "1":
-            start_work()
+            start_work(username)
 
         elif choice == "2":
             view_data()

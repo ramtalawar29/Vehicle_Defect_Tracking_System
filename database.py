@@ -15,6 +15,7 @@ def create_database():
 
         ws.append([
             "Timestamp",
+            "Username",
             "VIN Number",
             "Model",
             "Fuel Type",
@@ -22,10 +23,11 @@ def create_database():
         ])
 
         wb.save(FILE_NAME)
+        wb.close()
 
 
 # Save Record
-def save_record(vin, model, fuel, issues):
+def save_record(username, vin, model, fuel, issues):
 
     create_database()
 
@@ -36,6 +38,7 @@ def save_record(vin, model, fuel, issues):
 
     ws.append([
         timestamp,
+        username,
         vin,
         model,
         fuel,
@@ -47,7 +50,9 @@ def save_record(vin, model, fuel, issues):
 
 
 # Start Work
-def start_work():
+def start_work(username):
+
+    print(f"\nLogged In User : {username}")
 
     while True:
 
@@ -55,8 +60,9 @@ def start_work():
 
         vin = int(input("Enter VIN Number : "))
 
-        if vin == 0 :
+        if vin == 0:
             break
+
         print("\nSelect Model")
         print("1. Harrier")
         print("2. Safari")
@@ -83,9 +89,9 @@ def start_work():
                 "Shockupser RH",
                 "Shockupser LH",
                 "Subframe RH Front",
-		"Subframe RH Rear",
+                "Subframe RH Rear",
                 "Subframe LH Front",
-		"Subframe LH rear"
+                "Subframe LH Rear"
             ]
 
         elif fuel_choice == "2":
@@ -93,12 +99,12 @@ def start_work():
             issue_list = [
                 "RTB RH",
                 "RTB LH",
-                 "Shockupser RH",
+                "Shockupser RH",
                 "Shockupser LH",
                 "Subframe RH Front",
                 "Subframe RH Rear",
                 "Subframe LH Front",
-                "Subframe LH rear"
+                "Subframe LH Rear"
             ]
 
         else:
@@ -113,7 +119,7 @@ def start_work():
                 "Subframe RH Front",
                 "Subframe RH Rear",
                 "Subframe LH Front",
-                "Subframe LH rear"
+                "Subframe LH Rear"
             ]
 
         print("\nSelect Issues (Example: 1,3,5)\n")
@@ -133,8 +139,9 @@ def start_work():
 
         issues = ", ".join(selected_issues)
 
-        save_record(vin, model, fuel, issues)
+        save_record(username, vin, model, fuel, issues)
 
         print("\n✅ Record Saved Successfully.")
+        print(f"Recorded By : {username}")
 
-        print("\n Enter VIN 000 TO Exit or back to main manue")
+        print("\nEnter VIN 0 to Exit or Back to Main Menu")

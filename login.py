@@ -68,8 +68,7 @@ def login():
         if user:
             print("\nLogin Successful!")
             print("Welcome,", user[1])
-            return user[1]     # Return the username
-        #    return True
+            return True
 
         else:
             attempts -= 1
@@ -77,52 +76,39 @@ def login():
             print("Attempts Left :", attempts)
 
     print("\nAccount Locked!")
-    return None
+    return False
 
-def main_menu():
+
 # -------------------------------
 # Main Program
 # -------------------------------
-	while True:
+while True:
 
-	    print("\n================================")
-	    print("      USER MANAGEMENT SYSTEM")
-	    print("================================")
-	    print("1. Register")
-	    print("2. Login")
-	    print("3. Exit")
-	    print("================================")
+    print("\n================================")
+    print("      USER MANAGEMENT SYSTEM")
+    print("================================")
+    print("1. Register")
+    print("2. Login")
+    print("3. Exit")
+    print("================================")
 
-	    choice = input("Enter Choice : ")
+    choice = input("Enter Choice : ")
 
-	    if choice == "1":
-	        register()
+    if choice == "1":
+        register()
 
-	    elif choice == "2":
-                username = login()
-
-                if username:
-	        #if login():
-                    print("\n" + "=" * 45)
-                    print("     VEHICLE DEFECT TRACKING SYSTEM")
-                    print("=" * 45)
-                    print("1. Start Work")
-                    print("2. View Data")
-                    print("3. Exit")
-                    print("=" * 45)
-
-                    choice = input("Enter Your Choice : ")
-
-                    return choice,username
+    elif choice == "2":
+        if login():
+            print("\nAccess Granted.")
             # Call your Vehicle Defect Tracking System here
             # Example:
             # start_work()
 
-	    elif choice == "3":
-                print("\nThank You!")
-                break
+    elif choice == "3":
+        print("\nThank You!")
+        break
 
-	    else:
-                print("Invalid Choice!")
+    else:
+        print("Invalid Choice!")
 
-	conn.close()
+conn.close()

@@ -1,8 +1,6 @@
-from openpyxl import load_workbook
-import os
+from openpyxl import load_workbook import os
 
 FILE_NAME = "vehicle_data.xlsx"
-
 
 def view_data():
 
@@ -21,14 +19,13 @@ def view_data():
 
     for row in ws.iter_rows(min_row=2, values_only=True):
 
-        if str(row[0]).startswith(date):
+        if row[0].startswith(date):
 
             print("Date & Time :", row[0])
-            print("Username    :", row[1])
-            print("VIN Number  :", row[2])
-            print("Model       :", row[3])
-            print("Fuel Type   :", row[4])
-            print("Issues      :", row[5])
+            print("VIN Number  :", row[1])
+            print("Model       :", row[2])
+            print("Fuel Type   :", row[3])
+            print("Issues      :", row[4])
             print("-" * 40)
 
             found = True
